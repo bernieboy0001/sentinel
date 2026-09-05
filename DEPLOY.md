@@ -1,6 +1,6 @@
-# AUDIT — Deployment Guide
+# SENTINEL — Deployment Guide
 
-Put AUDIT live in three pieces:
+Put SENTINEL live in three pieces:
 
 ```
  Base Sepolia (testnet)     long-running agent (Render)     dashboard (Vercel)
@@ -18,8 +18,8 @@ Free everything: testnet ETH is free, Render starter + Vercel hobby are free.
    ```
    git init
    git add .
-   git commit -m "AUDIT"
-   gh repo create audit --public --source=. --push
+   git commit -m "SENTINEL"
+   gh repo create sentinel --public --source=. --push
    ```
 2. **Create 3 wallets** (or reuse the hardhat dev keys). Only for testnet, any wallet
    generator works. You need three private keys:
@@ -66,7 +66,7 @@ The agent is an HTTP process that runs forever, trades, writes the on-chain ledg
 and serves the dashboard API on port 8787. `render.yaml` + `packages/agent/Dockerfile`
 are ready to go.
 
-1. Render → **New → Blueprint** → pick the `audit` repo.
+1. Render → **New → Blueprint** → pick the `sentinel` repo.
    It auto-detects `render.yaml`, builds the Docker image, mounts a 1 GB disk at
    `/app/.data` (so the ledger survives restarts), and health-checks `/health`.
 2. When prompted, fill the secrets:
@@ -91,7 +91,7 @@ npm.cmd run agent:run
 
 ## 3. Dashboard (Vercel)
 
-1. Vercel → **Add New Project** → import the `audit` repo.
+1. Vercel → **Add New Project** → import the `sentinel` repo.
 2. Set **Root Directory** to `packages/web`.
 3. Vercel detects Next.js automatically. Add one env var:
    - `NEXT_PUBLIC_AGENT_URL` = `https://audit-agent.onrender.com` (no trailing slash)

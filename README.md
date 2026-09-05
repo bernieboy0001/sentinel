@@ -1,11 +1,11 @@
-# AUDIT — the self-auditing autonomous fund
+# SENTINEL — the self-auditing autonomous fund
 
 > An AI agent that trades a **live on-chain market**, commits **every decision
 > to a public append-only ledger**, hashes its intent **on-chain before
 > executing**, and then **re-scores itself on outcomes** — so you can watch it
 > earn or lose your trust in real time, and veto it while it's mid-decision.
 
-Built for the Orion Builder Hackathon. Everything runs free on testnet.
+Built for the Orion Builder and Telegraph hackathons. Everything runs free on testnet.
 
 **▶ Live now:** <https://audit-agent-eta.vercel.app> (agent worker:
 <https://audit-agent-b1sx.onrender.com>). Works on any base address.
@@ -96,7 +96,7 @@ npx hardhat node            # from packages/contracts
 cd packages/contracts
 $env:AGENT_PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
 $env:MARKET_MAKER_PRIVATE_KEY = "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d"
-npm run deploy:local        # writes ../audit/.data/deployed.json
+npm run deploy:local        # writes ../sentinel/.data/deployed.json
 ```
 
 ### 2. Run the agent

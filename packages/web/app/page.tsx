@@ -105,9 +105,9 @@ export default function Page() {
         <div className="brand">
           <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <BrandMark size={24} />
-            <span className="brandlogo">AUDIT<em>·</em></span>
+            <span className="brandlogo">SENTINEL<em>·</em></span>
           </span>
-          <span className="brandsub">a self-auditing AI fund · live demo</span>
+          <span className="brandsub">a self-auditing autonomous fund · live demo</span>
         </div>
         <div className="topstats">
           <span className={`pill ${online ? "ok" : "bad"}`}>
@@ -117,8 +117,10 @@ export default function Page() {
           <span className="pill">
             heartbeat <b>#{state?.cycle ?? "…"}</b>
           </span>
-          {state?.conviction === "high" && (
-            <span className="pill ok">conviction <b>HIGH</b></span>
+          {state?.conviction && (
+            <span className={`pill ${state.conviction === "high" ? "ok" : ""}`}>
+              conviction <b>{state.conviction.toUpperCase()}</b>
+            </span>
           )}
           <span className="pill">
             AUTH price <b>{price !== null && price !== undefined ? fmtPrice(price) : "…"}</b>
@@ -141,7 +143,7 @@ export default function Page() {
         </div>
       ) : (
         <div className={`hero ${pending ? "attention" : ""}`}>
-          <div className="heromark">◆</div>
+          <div className="heromark">◉</div>
           <div style={{ minWidth: 0 }}>
             <div className="hero-kicker">what&apos;s happening right now</div>
             <div className="hero-line">{statusSentence(state)}</div>
@@ -196,20 +198,20 @@ export default function Page() {
         <div className="footer-row">
           <span className="footer-brand">
             <BrandMark size={20} />
-            <b>AUDIT</b>
+            <b>SENTINEL</b>
           </span>
           <span>
             MEASUREMENTS, NOT ADVICE — nothing here is a recommendation to buy or
             sell anything.
           </span>
           <span className="footer-links mono">
-            <a href="https://github.com/bernieboy0001/audit" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://github.com/bernieboy0001/sentinel" target="_blank" rel="noreferrer">GitHub</a>
             <a href="https://sepolia.basescan.org/address/0xC995fCcC57892a5b87dA36c258Fb1c6fC3339DDE" target="_blank" rel="noreferrer">On-chain registry</a>
             <a href="https://audit-agent-b1sx.onrender.com/state" target="_blank" rel="noreferrer">Raw feed</a>
           </span>
         </div>
         <div className="footer-sub mono">
-          The black box recorder for AI agents · built for the Orion Builder Hackathon
+          The black box recorder for AI agents · built for the Telegraph Hackathon.
         </div>
       </footer>
     </>

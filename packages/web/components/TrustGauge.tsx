@@ -3,9 +3,9 @@
 import { TrustState } from "@/lib/types";
 
 function classify(score: number): { color: string; word: string } {
-  if (score >= 60) return { color: "#37d399", word: "trustworthy" };
-  if (score >= 40) return { color: "#ffb454", word: "still earning trust" };
-  return { color: "#ff5d6c", word: "unreliable right now" };
+  if (score >= 60) return { color: "#4be0a3", word: "trustworthy" };
+  if (score >= 40) return { color: "#ffbd68", word: "still earning trust" };
+  return { color: "#ff6b7a", word: "unreliable right now" };
 }
 
 function GaugeArc({ value, color }: { value: number; color: string }) {
@@ -19,7 +19,7 @@ function GaugeArc({ value, color }: { value: number; color: string }) {
         cy="60"
         r={r}
         fill="none"
-        stroke="#1c222d"
+        stroke="#222a3b"
         strokeWidth="9"
       />
       <circle
@@ -50,7 +50,7 @@ function GaugeArc({ value, color }: { value: number; color: string }) {
         y="80"
         textAnchor="middle"
         dominantBaseline="central"
-        fill="#8b94a7"
+        fill="#a7b0c6"
         style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: 1 }}
       >
         / 100

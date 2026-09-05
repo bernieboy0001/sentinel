@@ -20,9 +20,9 @@ export default function PriceChart({ points }: { points: Pt[] }) {
   const color =
     data.length > 1
       ? data[data.length - 1].price >= data[data.length - 2].price
-        ? "#37d399"
-        : "#ff5d6c"
-      : "#5aa7ff";
+        ? "#4be0a3"
+        : "#ff6b7a"
+      : "#8f9dff";
 
   return (
     <div className="panel">
@@ -57,15 +57,15 @@ export default function PriceChart({ points }: { points: Pt[] }) {
               </defs>
               <XAxis
                 dataKey="cycle"
-                stroke="#232a36"
-                tick={{ fill: "#8b94a7", fontSize: 10, fontFamily: "monospace" }}
+                stroke="#2b3547"
+                tick={{ fill: "#a7b0c6", fontSize: 10, fontFamily: "monospace" }}
                 axisLine={false}
                 tickLine={false}
               />
               <YAxis
                 domain={["auto", "auto"]}
-                stroke="#232a36"
-                tick={{ fill: "#8b94a7", fontSize: 10, fontFamily: "monospace" }}
+                stroke="#2b3547"
+                tick={{ fill: "#a7b0c6", fontSize: 10, fontFamily: "monospace" }}
                 tickFormatter={(v: number) => fmtPrice(v)}
                 width={58}
                 axisLine={false}
@@ -73,8 +73,8 @@ export default function PriceChart({ points }: { points: Pt[] }) {
               />
               <Tooltip
                 contentStyle={{
-                  background: "#11141a",
-                  border: "1px solid #232a36",
+                  background: "#171b27",
+                  border: "1px solid #2b3547",
                   borderRadius: 8,
                   fontFamily: "monospace",
                   fontSize: 12

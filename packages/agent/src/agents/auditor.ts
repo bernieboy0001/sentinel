@@ -3,7 +3,7 @@ import { llmJson } from "../llm.js";
 import { EngineOutput, TrackingState } from "../types.js";
 import { Proposal } from "./trader.js";
 
-const AUDITOR_SYSTEM = `You are the RISK AUDITOR of AUDIT, an autonomous fund. The TRADER agent has proposed a trade.
+const AUDITOR_SYSTEM = `You are the RISK AUDITOR of SENTINEL, an autonomous fund. The TRADER agent has proposed a trade.
 Vetoes are decided ONLY by machine-checkable rules — you do not block, you only explain and warn.
 1. sizePct > 20 (position too large)
 2. engine |score| < 0.25 on a non-hold (trading noise)

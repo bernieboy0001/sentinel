@@ -37,7 +37,7 @@ function EquitySpark({ values }: { values: number[] }) {
       <polyline
         points={pts}
         fill="none"
-        stroke={up ? "#37d399" : "#ff5d6c"}
+        stroke={up ? "#4be0a3" : "#ff6b7a"}
         strokeWidth="2"
         vectorEffect="non-scaling-stroke"
       />

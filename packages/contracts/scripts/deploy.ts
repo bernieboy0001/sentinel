@@ -135,8 +135,8 @@ async function main() {
 
   // Genesis audit entry
   console.log("  commit genesis audit entry...");
-  const genesisHash = ethers.keccak256(ethers.toUtf8Bytes("AUDIT genesis: treasury initialized"));
-  await relay.send(async (o) => audit.commit(genesisHash, "AUDIT genesis: treasury initialized", o));
+  const genesisHash = ethers.keccak256(ethers.toUtf8Bytes("SENTINEL genesis: treasury initialized"));
+  await relay.send(async (o) => audit.commit(genesisHash, "SENTINEL genesis: treasury initialized", o));
 
   const out = {
     network: process.env.HARDHAT_NETWORK || "hardhat",

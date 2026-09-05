@@ -1,18 +1,20 @@
 :root {
-  --bg: #0a0c10;
-  --panel: #11141a;
-  --panel-2: #161b23;
-  --border: #232a36;
-  --border-soft: #1a2029;
-  --text: #e6eaf2;
-  --muted: #8b94a7;
-  --green: #37d399;
-  --red: #ff5d6c;
-  --amber: #ffb454;
-  --blue: #5aa7ff;
+  --bg: #12151f;
+  --panel: #171b27;
+  --panel-2: #1f2433;
+  --border: #2b3547;
+  --border-soft: #202838;
+  --text: #f4f6fd;
+  --muted: #a7b0c6;
+  --green: #4be0a3;
+  --red: #ff6b7a;
+  --amber: #ffbd68;
+  --blue: #8f9dff;
+  --violet: #a78bfa;
+  --cyan: #45e0ff;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --radius: 10px;
+  --radius: 12px;
 }
 
 * {
@@ -23,11 +25,20 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(900px 460px at 18% -6%, rgba(143, 157, 255, 0.14), transparent 62%),
+    radial-gradient(760px 420px at 88% -4%, rgba(69, 224, 255, 0.09), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: auto auto, auto auto, 44px 44px, 44px 44px;
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--sans);
   font-size: 14px;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -70,8 +81,9 @@ a:hover {
   justify-content: space-between;
   gap: 16px;
   padding: 14px 20px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
+  border-bottom: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, #161a26, var(--bg));
+  box-shadow: 0 1px 0 rgba(167, 139, 250, 0.12), 0 10px 30px rgba(0, 0, 0, 0.25);
   position: sticky;
   top: 0;
   z-index: 5;
@@ -90,11 +102,16 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.14em;
   color: var(--text);
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .brandlogo em {
   font-style: normal;
-  color: var(--blue);
+  color: var(--cyan);
+  -webkit-text-fill-color: var(--cyan);
 }
 
 .brandsub {
@@ -131,7 +148,7 @@ a:hover {
   font-weight: 600;
 }
 
-.pill.ok { border-color: rgba(55, 211, 153, 0.4); color: var(--green); }
+.pill.ok { border-color: rgba(75, 224, 163, 0.45); color: var(--green); }
 .pill.bad { border-color: rgba(255, 93, 108, 0.4); color: var(--red); }
 
 .pulse {
@@ -152,15 +169,15 @@ a:hover {
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(55, 211, 153, 0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(55, 211, 153, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(75, 224, 163, 0.6); }
+  50% { box-shadow: 0 0 0 6px rgba(75, 224, 163, 0); }
 }
 
 /* ---------- hero ---------- */
 
 .conn-error {
   border: 1px solid rgba(255, 93, 108, 0.5);
-  background: #1a0d0d;
+  background: #281417;
   padding: 10px 18px;
   font-family: var(--mono);
   font-size: 12px;
@@ -175,7 +192,10 @@ a:hover {
   gap: 14px;
   padding: 16px 20px;
   border-bottom: 1px solid var(--border-soft);
-  background: linear-gradient(180deg, #0e1219, var(--bg));
+  background:
+    radial-gradient(640px 220px at 10% 0%, rgba(167, 139, 250, 0.16), transparent 70%),
+    radial-gradient(520px 200px at 92% 0%, rgba(69, 224, 255, 0.1), transparent 70%),
+    linear-gradient(180deg, #161a26, var(--bg));
 }
 
 .hero.attention {
@@ -187,14 +207,15 @@ a:hover {
   width: 34px;
   height: 34px;
   flex: 0 0 auto;
-  border-radius: 9px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
-  background: var(--panel-2);
-  border: 1px solid var(--border);
+  background: radial-gradient(circle at 50% 38%, rgba(143, 157, 255, 0.32), var(--panel-2) 72%);
+  border: 1px solid rgba(167, 139, 250, 0.5);
+  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.1), 0 0 18px rgba(69, 224, 255, 0.2);
   color: var(--blue);
 }
 
@@ -252,8 +273,8 @@ a:hover {
     transition: border-color 0.2s ease, box-shadow 0.3s ease, transform 0.2s ease;
   }
   .panel:hover {
-    border-color: rgba(120, 130, 160, 0.55);
-    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(120, 130, 160, 0.08);
+    border-color: rgba(167, 139, 250, 0.55);
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(167, 139, 250, 0.12), 0 0 26px rgba(69, 224, 255, 0.06);
   }
   .panel-accent:hover {
     border-color: rgba(255, 180, 84, 0.7);
@@ -299,15 +320,15 @@ a:hover {
   gap: 8px;
   flex-wrap: wrap;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 8px 10px;
   margin: 10px 0 8px 0;
   background: rgba(255, 255, 255, 0.02);
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 .tracking-badge:hover {
-  border-color: rgba(55, 211, 153, 0.5);
-  background: rgba(55, 211, 153, 0.04);
+  border-color: rgba(75, 224, 163, 0.55);
+  background: rgba(75, 224, 163, 0.06);
 }
 .tracking-badge.cold {
   border-color: rgba(255, 93, 108, 0.5);
@@ -327,8 +348,8 @@ a:hover {
   font-weight: 800;
   color: var(--text);
 }
-.tracking-badge.cold .mono { color: #ff5d6c; }
-.tracking-badge:not(.cold) .mono { color: #37d399; }
+.tracking-badge.cold .mono { color: #ff6b7a; }
+.tracking-badge:not(.cold) .mono { color: #4be0a3; }
 
 .panel {
   background: var(--panel);
@@ -455,7 +476,7 @@ a:hover {
 
 .planbox {
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--panel-2);
   padding: 12px;
 }
@@ -496,7 +517,7 @@ a:hover {
   color: #fff;
   background: #c0281f;
   border: 1px solid rgba(255, 93, 108, 0.6);
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background 0.15s ease, transform 0.05s ease;
 }
@@ -546,7 +567,7 @@ a:hover {
 
 .entry {
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--panel-2);
   padding: 9px 11px;
   transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
@@ -554,7 +575,7 @@ a:hover {
 
 @media (hover: hover) {
   .entry:hover {
-    border-color: rgba(120, 130, 160, 0.6);
+    border-color: rgba(167, 139, 250, 0.5);
     background: rgba(255, 255, 255, 0.03);
     transform: translateX(2px);
   }
@@ -562,8 +583,8 @@ a:hover {
     transition: border-color 0.15s ease, background 0.15s ease;
   }
   .planbox.trader:hover {
-    border-color: rgba(72, 128, 255, 0.55);
-    background: rgba(72, 128, 255, 0.04);
+    border-color: rgba(143, 157, 255, 0.55);
+    background: rgba(143, 157, 255, 0.06);
   }
   .planbox.audit:hover {
     border-color: rgba(55, 211, 153, 0.5);
@@ -660,7 +681,8 @@ a:hover {
 
 .powerup-bar > div {
   height: 100%;
-  background: linear-gradient(90deg, var(--blue), var(--green));
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  box-shadow: 0 0 14px rgba(167, 139, 250, 0.6);
   transition: width 0.9s linear;
 }
 
@@ -714,26 +736,29 @@ a:hover {
 
 .term-input:focus {
   border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(143, 157, 255, 0.18);
 }
 
 .term-button {
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--green);
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  border: none;
+  border-radius: 10px;
+  color: #0e1220;
   font-size: 12.5px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.04em;
   padding: 9px 14px;
   cursor: pointer;
+  box-shadow: 0 4px 18px rgba(167, 139, 250, 0.35);
 }
 
 .term-button:hover:not(:disabled) {
-  border-color: var(--green);
+  filter: brightness(1.08);
+  box-shadow: 0 6px 24px rgba(69, 224, 255, 0.45);
 }
 
 .term-button:disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: wait;
 }
 
@@ -753,7 +778,7 @@ a:hover {
 
 .inspect-result {
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--panel-2);
   padding: 12px;
   display: flex;
@@ -775,7 +800,7 @@ a:hover {
   justify-content: space-between;
   gap: 8px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--panel-2);
   padding: 9px 12px;
 }

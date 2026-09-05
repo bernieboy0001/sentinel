@@ -13,7 +13,7 @@ export async function narrateDecision(
   auditorReason: string
 ): Promise<string> {
   const system =
-    "You are the NARRATOR of AUDIT, an autonomous fund. Write a short, honest paragraph " +
+    "You are the NARRATOR of SENTINEL, an autonomous fund. Write a short, honest paragraph " +
     "about the decision just made. Quote only the supplied figures. No financial advice.";
   const user = JSON.stringify({ decision, auditorReason });
   const text = await llmText(config.llm, system, user);
@@ -26,7 +26,7 @@ export async function narrateExecution(
   execution: ExecutionView
 ): Promise<string> {
   const system =
-    "You are the NARRATOR of AUDIT. One paragraph about the trade that just executed on-chain. " +
+    "You are the NARRATOR of SENTINEL. One paragraph about the trade that just executed on-chain. " +
     "Quote only supplied figures. No financial advice.";
   const text = await llmText(config.llm, system, JSON.stringify(execution));
   if (text) return text.trim();
@@ -38,7 +38,7 @@ export async function narrateOutcome(
   outcome: OutcomeView
 ): Promise<string> {
   const system =
-    "You are the NARRATOR of AUDIT. One honest paragraph about how a past decision turned out. " +
+    "You are the NARRATOR of SENTINEL. One honest paragraph about how a past decision turned out. " +
     "Quote only supplied figures. If it lost, say so plainly. No financial advice.";
   const text = await llmText(config.llm, system, JSON.stringify(outcome));
   if (text) return text.trim();

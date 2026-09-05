@@ -24,7 +24,7 @@ export const AUDIT_ABI = [
 ];
 
 export interface Chain {
-  provider: ethers.JsonRpcProvider;
+  provider: ethers.Provider;
   agent: ethers.Wallet;
   mm: ethers.Wallet;
   tokens: { auth: string; auds: string };
@@ -62,7 +62,10 @@ class NoncedWallet extends ethers.Wallet {
 }
 
 export function connectChain(config: Config): Chain {
-  const provider = new ethers.JsonRpcProvider(config.rpcUrl);
+  // Multiple RPCs, same network: FallbackProvider transparently retries across
+  // them (sepolia.base.org is flaky — occasional TLS failures). Requests wait
+  // and one provider answers, so calls don't stall on a dead endpoint.
+  const provider = createProvider(config.rpcUrls);
   // Serialized sends + explicit nonces = no drift (NonceManager desyncs under
   // automining rejections, plain wallets hit rare stale-count races).
   const agent = new NoncedWallet(config.agentPrivateKey, provider);
@@ -75,6 +78,21 @@ export function connectChain(config: Config): Chain {
     amm: config.deployed.amm,
     auditRegistry: config.deployed.auditRegistry
   };
+}
+
+function createProvider(rpcUrls: string[]): ethers.Provider {
+  if (rpcUrls.length === 1) {
+    return new ethers.JsonRpcProvider(rpcUrls[0]);
+  }
+  const providers = rpcUrls.map((url, i) => ({
+    provider: new ethers.JsonRpcProvider(url),
+    priority: i,
+    stallTimeout: 8000,
+    weight: 1
+  }));
+  // quorum 1: public nodes drift apart (stale receipts, rejected txs); any
+  // first response wins and higher-priority providers are preferred for reads.
+  return new ethers.FallbackProvider(providers, undefined, { quorum: 1 });
 }
 
 export async function getReserves(chain: Chain): Promise<[bigint, bigint]> {

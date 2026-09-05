@@ -15,7 +15,7 @@ export interface LlmConfig {
 export interface Config {
   deployed: Deployed;
   dataDir: string;
-  rpcUrl: string;
+  rpcUrls: string[];
   agentPrivateKey: string;
   marketMakerPrivateKey: string;
   llm: LlmConfig;
@@ -50,7 +50,7 @@ export function loadConfig(dataDir?: string): Config {
   return {
     deployed,
     dataDir: resolvedDataDir,
-    rpcUrl: process.env.RPC_URL || "https://sepolia.base.org",
+    rpcUrls: splitRpcUrls(process.env.RPC_URL, BASE_SEPOLIA_RPCS),
     agentPrivateKey: process.env.AGENT_PRIVATE_KEY || "",
     marketMakerPrivateKey:
       process.env.MARKET_MAKER_PRIVATE_KEY || process.env.AGENT_PRIVATE_KEY || "",
@@ -73,25 +73,36 @@ export function loadConfig(dataDir?: string): Config {
         : "moderate",
     explorerUrl:
       process.env.EXPLORER_URL || "https://sepolia.basescan.org",
-    inspectRpcUrls: splitRpcUrls(process.env.MAINNET_RPC_URL),
+    inspectRpcUrls: splitRpcUrls(process.env.MAINNET_RPC_URL, BASE_MAINNET_RPCS),
     inspectChainLabel: "Base mainnet"
   };
 }
 
-/** One or more comma-separated RPCs; defaults to public Base mainnet RPCs that
- * tolerate datacenter (Render) egress — many nodes block cloud IPs. */
-function splitRpcUrls(raw: string | undefined): string[] {
+/** Known-reliable RPCs — sepolia.base.org alone is flaky (occasional TLS
+ * failures, so we fall back across providers). */
+const BASE_SEPOLIA_RPCS = [
+  "https://sepolia.base.org",
+  "https://base-sepolia-rpc.publicnode.com",
+  "https://base-sepolia.drpc.org"
+];
+
+/** Public Base mainnet RPCs that tolerate datacenter (Render) egress — many
+ * nodes block cloud IPs. */
+const BASE_MAINNET_RPCS = [
+  "https://base.llamarpc.com",
+  "https://1rpc.io/base",
+  "https://base.blockpi.network/v1/rpc/public",
+  "https://rpc.ankr.com/eth_base",
+  "https://base-rpc.publicnode.com"
+];
+
+function splitRpcUrls(
+  raw: string | undefined,
+  fallback: string[]
+): string[] {
   const urls = (raw ?? "")
     .split(",")
     .map((u) => u.trim())
     .filter(Boolean);
-  return urls.length
-    ? urls
-    : [
-        "https://base.llamarpc.com",
-        "https://1rpc.io/base",
-        "https://base.blockpi.network/v1/rpc/public",
-        "https://rpc.ankr.com/eth_base",
-        "https://base-rpc.publicnode.com"
-      ];
+  return urls.length ? urls : fallback;
 }

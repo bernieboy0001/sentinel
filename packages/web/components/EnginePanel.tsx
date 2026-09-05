@@ -36,7 +36,7 @@ export default function EnginePanel({ state }: { state: AppState }) {
                   className="fill"
                   style={{
                     width: `${pct}%`,
-                    background: s.value >= 0 ? "#37d399" : "#ff5d6c",
+                    background: s.value >= 0 ? "#4be0a3" : "#ff6b7a",
                     left: s.value >= 0 ? "50%" : `${50 - pct}%`
                   }}
                 />
@@ -47,7 +47,7 @@ export default function EnginePanel({ state }: { state: AppState }) {
                     top: 0,
                     bottom: 0,
                     width: 1,
-                    background: "#2a3242"
+                    background: "#2b3547"
                   }}
                 />
               </div>

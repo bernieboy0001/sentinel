@@ -66,11 +66,11 @@ export function startMarketMaker(
   config: Config
 ): NodeJS.Timeout {
   if (!config.marketMakerEnabled) {
-    console.log("[AUDIT] market maker disabled");
+    console.log("[SENTINEL] market maker disabled");
     return null as unknown as NodeJS.Timeout;
   }
   const ms = Math.max(1500, Math.round(config.cycleMs / 3));
-  console.log(`[AUDIT] market maker started (every ${ms}ms)`);
+  console.log(`[SENTINEL] market maker started (every ${ms}ms)`);
   return setInterval(() => {
     marketMakerTick(chain, config).catch((e) =>
       console.warn("[mm] tick failed:", (e as Error).message)

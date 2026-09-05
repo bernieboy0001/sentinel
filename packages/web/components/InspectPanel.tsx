@@ -7,7 +7,7 @@ import { fmtPrice, shortAddr } from "@/lib/format";
 import type { InspectionResult } from "@/lib/types";
 
 const CHIPS: { label: string; addr: string; net: "agent" | "mainnet" }[] = [
-  { label: "AUTH (AUDIT's token)", addr: "0x21D3C381eb5c1Da6cc971F5EA5097d55a8C2Be6c", net: "agent" },
+  { label: "AUTH (SENTINEL's token)", addr: "0x21D3C381eb5c1Da6cc971F5EA5097d55a8C2Be6c", net: "agent" },
   { label: "AI's wallet", addr: "0x0213E0E289Cee20eFC1B851dd48F1C6F06F79Ac2", net: "agent" },
   { label: "USDC · mainnet", addr: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", net: "mainnet" },
   { label: "WETH · mainnet", addr: "0x4200000000000000000000000000000000000006", net: "mainnet" }
@@ -56,7 +56,7 @@ export default function InspectPanel() {
 
   return (
     <div className="panel">
-      <h3>Audit anything — give AUDIT an address</h3>
+      <h3>Audit anything — give SENTINEL an address</h3>
       <p className="sub">
         Paste any address on Base mainnet or the testnet. It reads the truth
         straight from the contract — and it will not invent a price it can&apos;t
@@ -78,7 +78,7 @@ export default function InspectPanel() {
           onClick={() => run(target, target.startsWith("0x21D3") || target === CHIPS[1].addr ? ("agent" as const) : ("mainnet" as const))}
           disabled={busy || !target.trim()}
         >
-          {busy ? "reading chain…" : "AUDIT →"}
+          {busy ? "reading chain…" : "audit →"}
         </button>
       </div>
 
@@ -100,7 +100,7 @@ export default function InspectPanel() {
           <Row k="type" v={result.isContract ? "smart contract" : "wallet"} />
           {result.inMarket && (
             <>
-              <Row k="in AUDIT's market" v={<b className="green">{result.inMarket}</b>} />
+              <Row k="in SENTINEL's market" v={<b className="green">{result.inMarket}</b>} />
               <Row k="live AMM price" v={fmtPrice(result.price ?? 0)} />
             </>
           )}
@@ -113,7 +113,7 @@ export default function InspectPanel() {
           {result.eth !== undefined && <Row k="ETH held" v={`${result.eth} ETH`} />}
           {result.agentBalance !== undefined && (
             <Row
-              k="AUDIT's balance of it"
+              k="SENTINEL's balance of it"
               v={result.agentBalance}
             />
           )}

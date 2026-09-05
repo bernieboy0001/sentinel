@@ -35,7 +35,7 @@ export default function PowerUp() {
       <div className="powerup-head">
         <BrandMark size={44} />
         <div>
-          <div className="powerup-title">AUDIT — engine power-up</div>
+          <div className="powerup-title">SENTINEL — engine power-up</div>
           <div className="powerup-sub">
             full power in ≈ {sec}s · <span className="muted">the engine is a real live process</span>
           </div>

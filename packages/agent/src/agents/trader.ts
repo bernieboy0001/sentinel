@@ -3,7 +3,7 @@ import { llmJson } from "../llm.js";
 import { sizeMultiplier } from "../learn.js";
 import { EngineOutput, Side, TrackingState } from "../types.js";
 
-const TRADER_SYSTEM = `You are the TRADER agent of AUDIT, an autonomous fund trading a demo AMM pool on Base testnet.
+const TRADER_SYSTEM = `You are the TRADER agent of SENTINEL, an autonomous fund trading a demo AMM pool on Base testnet.
 You propose ONE trade per cycle. You never invent numbers: every figure in your reasoning comes from the ENGINE JSON supplied to you.
 Rules:
 - "buy" means buy AUTH paying AUDS; "sell" means sell AUTH; "hold" means do nothing.

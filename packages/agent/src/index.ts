@@ -7,7 +7,7 @@ import { startServer } from "./server.js";
 
 function banner(config: ReturnType<typeof loadConfig>): void {
   console.log("----------------------------------------");
-  console.log("  AUDIT — self-auditing autonomous fund");
+  console.log("  SENTINEL — self-auditing autonomous fund");
   console.log("----------------------------------------");
   console.log("network :", config.deployed.network, "chainId", config.deployed.chainId);
   console.log("agent   :", config.deployed.agent);
@@ -34,7 +34,7 @@ async function main(): Promise<void> {
   startServer(config, store, chain);
 
   const shutdown = () => {
-    console.log("\n[AUDIT] shutting down");
+    console.log("\n[SENTINEL] shutting down");
     process.exit(0);
   };
   process.on("SIGINT", shutdown);
@@ -42,7 +42,7 @@ async function main(): Promise<void> {
   // A flaky RPC once threw after the socket closed and took the process down.
   // The health of the demo matters more than one unhappy request: log it, move on.
   process.on("unhandledRejection", (e) =>
-    console.warn("[AUDIT] unhandled rejection:", (e as Error)?.message ?? e)
+    console.warn("[SENTINEL] unhandled rejection:", (e as Error)?.message ?? e)
   );
 }
 

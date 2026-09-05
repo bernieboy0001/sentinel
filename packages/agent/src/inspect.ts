@@ -57,7 +57,7 @@ async function inspectOn(
   if (!isContract) {
     const eth = await get(provider.getBalance(addr));
     base.eth = fmtRawBalance(eth.toString(), 18);
-    base.note = `${addr} is a plain wallet holding ${base.eth} ETH on ${chainLabel}. AUDIT read that directly — no guesses.`;
+    base.note = `${addr} is a plain wallet holding ${base.eth} ETH on ${chainLabel}. SENTINEL read that directly — no guesses.`;
     return base;
   }
 
@@ -71,13 +71,13 @@ async function inspectOn(
     const bal = await getBalances(chain, agentAddr);
     base.inMarket = sym;
     base.symbol = sym;
-    base.name = sym === "AUTH" ? "AUDIT Vector Token" : "AUDIT Stable";
+    base.name = sym === "AUTH" ? "SENTINEL Vector Token" : "SENTINEL Stable";
     base.decimals = 18;
     base.price = price;
     base.agentBalance = (isAuth ? bal.auth : bal.auds).toString();
     base.note = `${
       base.name
-    } (${sym}) is AUDIT's own market token on its testnet. Live AMM price ${price.toFixed(
+    } (${sym}) is SENTINEL's own market token on its testnet. Live AMM price ${price.toFixed(
       4
     )} — read from the swap contract, not a feed.`;
     return base;
@@ -108,19 +108,19 @@ async function inspectOn(
   base.agentBalance = agentBalance;
 
   if (symbol) {
-    base.note = `Token ${name ? name + " " : ""}(${symbol}) is not in AUDIT's demo market, so AUDIT won't pretend to price it on ${chainLabel}. The balance shown above was read on-chain: ${fmtRawBalance(
+    base.note = `Token ${name ? name + " " : ""}(${symbol}) is not in SENTINEL's demo market, so SENTINEL won't pretend to price it on ${chainLabel}. The balance shown above was read on-chain: ${fmtRawBalance(
       agentBalance,
       decimals
     )} ${symbol}.`;
   } else {
-    base.note = `A deployed contract on ${chainLabel}, but not an ERC-20 AUDIT knows how to price. AUDIT says so instead of guessing.`;
+    base.note = `A deployed contract on ${chainLabel}, but not an ERC-20 SENTINEL knows how to price. SENTINEL says so instead of guessing.`;
   }
 
   return base;
 }
 
 /**
- * The "audit anything" primitive: give AUDIT any address and it reads the
+ * The "audit anything" primitive: give SENTINEL any address and it reads the
  * truth straight off the chain. Tries each public RPC in order so a slow node
  * never stalls the request, and always returns an answer — never a hang.
  */

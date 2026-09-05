@@ -1,4 +1,4 @@
-# AUDIT agent worker image (render/railway/fly/docker)
+# SENTINEL agent worker image (render/railway/fly/docker)
 FROM node:22-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json tsconfig.base.json ./

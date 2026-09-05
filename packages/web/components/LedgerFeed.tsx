@@ -79,8 +79,8 @@ const KIND_META: Record<
     summary: (e) => {
       const d = e.data as any;
       const sym = String(d.symbol ?? "address");
-      const inMarket = d.inMarket ? ` — ${d.inMarket} is AUDIT's market token` : "";
-      return `a human asked AUDIT to audit ${sym}${inMarket}`;
+      const inMarket = d.inMarket ? ` — ${d.inMarket} is SENTINEL's market token` : "";
+      return `a human asked SENTINEL to audit ${sym}${inMarket}`;
     }
   }
 };

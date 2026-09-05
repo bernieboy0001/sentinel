@@ -72,9 +72,9 @@ async function inspectOn(url: string, addr: string): Promise<InspectionResult> {
   base.decimals = decimals;
 
   if (symbol) {
-    base.note = `Token ${name ? name + " " : ""}(${symbol}) on Base mainnet. AUDIT verified its metadata and code directly from the chain in your browser. AUDIT only ever trades its own market token (AUTH) — it audits the rest without pretending to trade them.`;
+    base.note = `Token ${name ? name + " " : ""}(${symbol}) on Base mainnet. SENTINEL verified its metadata and code directly from the chain in your browser. SENTINEL only ever trades its own market token (AUTH) — it audits the rest without pretending to trade them.`;
   } else {
-    base.note = "A deployed contract on Base mainnet, but not an ERC-20 AUDIT knows how to read. AUDIT says so instead of guessing.";
+    base.note = "A deployed contract on Base mainnet, but not an ERC-20 SENTINEL knows how to read. SENTINEL says so instead of guessing.";
   }
   return base;
 }

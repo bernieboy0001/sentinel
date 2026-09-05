@@ -1,8 +1,8 @@
 {
-  "name": "audit",
+  "name": "sentinel",
   "version": "0.1.0",
   "private": true,
-  "description": "AUDIT - the first self-auditing autonomous agent fund. Every decision is committed on-chain and re-scored on outcome.",
+  "description": "SENTINEL - the first self-auditing autonomous agent fund. Every decision is committed on-chain and re-scored on outcome.",
   "workspaces": [
     "packages/contracts",
     "packages/agent",
