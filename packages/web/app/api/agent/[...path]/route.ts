@@ -71,9 +71,10 @@ async function proxy(method: "GET" | "POST", path: string[], body?: string) {
         "Cache-Control": "no-store"
       }
     });
-  } catch {
+  } catch (e) {
+    console.error("agent bridge upstream error:", e);
     return Response.json(
-      { error: "agent unreachable from Vercel (render cold-start or IPv6 egress)" },
+      { error: `agent bridge failed: ${e instanceof Error ? e.message : String(e)}` },
       { status: 502 }
     );
   }
