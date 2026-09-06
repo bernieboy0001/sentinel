@@ -4,7 +4,8 @@ import type { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const AGENT = process.env.NEXT_PUBLIC_AGENT_URL || "http://localhost:8787";
+const AGENT =
+  process.env.NEXT_PUBLIC_AGENT_URL || "https://audit-agent-b1sx.onrender.com";
 
 function upstream(
   method: "GET" | "POST",
