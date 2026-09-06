@@ -715,6 +715,11 @@ a:hover {
   padding-top: 10px;
 }
 
+.powerup-error {
+  color: #ff6b7a;
+  font-family: var(--font-mono, ui-monospace, monospace);
+}
+
 /* ---------- inspect panel ---------- */
 
 .inspectbar {

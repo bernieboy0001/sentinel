@@ -139,7 +139,7 @@ export default function Page() {
 
       {!everOnline ? (
         <div className="hero boothero">
-          <PowerUp />
+          <PowerUp note={connError} />
         </div>
       ) : (
         <div className={`hero ${pending ? "attention" : ""}`}>

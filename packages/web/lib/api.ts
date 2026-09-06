@@ -6,19 +6,24 @@ export const AGENT_URL =
 export const EXPLORER_URL =
   process.env.NEXT_PUBLIC_EXPLORER_URL || "https://sepolia.basescan.org";
 
+const API_BASE =
+  typeof window !== "undefined"
+    ? `${window.location.origin}/api/agent`
+    : "http://localhost:8787";
+
 export function txLink(hash: string): string {
   return `${EXPLORER_URL}/tx/${hash}`;
 }
 
 export async function fetchState(): Promise<AppState> {
-  const r = await fetch(`${AGENT_URL}/state`, { cache: "no-store" });
-  if (!r.ok) throw new Error(`HTTP ${r.status} from ${AGENT_URL}`);
+  const r = await fetch(`${API_BASE}/state`, { cache: "no-store" });
+  if (!r.ok) throw new Error(`HTTP ${r.status} from the agent bridge`);
   return (await r.json()) as AppState;
 }
 
 export async function humanVeto(decisionId: string): Promise<boolean> {
   try {
-    const r = await fetch(`${AGENT_URL}/human-veto`, {
+    const r = await fetch(`${API_BASE}/human-veto`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ decisionId })
@@ -35,7 +40,7 @@ export type InspectResult =
 
 export async function inspectTarget(target: string): Promise<InspectResult> {
   try {
-    const r = await fetch(`${AGENT_URL}/inspect`, {
+    const r = await fetch(`${API_BASE}/inspect`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ target })

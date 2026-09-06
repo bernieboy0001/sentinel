@@ -13,7 +13,7 @@ const STEPS = [
 
 const BOOT_S = 60;
 
-export default function PowerUp() {
+export default function PowerUp({ note }: { note?: string | null }) {
   const [sec, setSec] = useState(BOOT_S);
   useEffect(() => {
     const id = setInterval(
@@ -56,8 +56,17 @@ export default function PowerUp() {
         ))}
       </div>
       <div className="powerup-note">
-        Nothing here is pre-recorded. The agent sleeps on the free tier and needs a
-        moment to reconnect — you&apos;re about to watch the real thing, live.
+        {note ? (
+          <span className="powerup-error">
+            fetch failing: {note} — retrying.
+          </span>
+        ) : (
+          <>
+            Nothing here is pre-recorded. The agent sleeps on the free tier and
+            needs a moment to reconnect — you&apos;re about to watch the real
+            thing, live.
+          </>
+        )}
       </div>
     </div>
   );
